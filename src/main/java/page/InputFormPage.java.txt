@@ -1,0 +1,52 @@
+package pages;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
+
+public class InputFormPage {
+
+    WebDriver driver;
+
+    By submitBtn = By.xpath("//button[text()='Submit']");
+    By nameField = By.id("name");
+    By successMsg = By.className("success-msg");
+
+    public InputFormPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void clickSubmitWithoutData() {
+        driver.findElement(submitBtn).click();
+    }
+
+    public String getNameFieldValidationMessage() {
+        return driver.findElement(nameField)
+                .getAttribute("validationMessage");
+    }
+
+    public void fillAllFields() {
+
+        driver.findElement(nameField).sendKeys("Vignesh");
+        driver.findElement(By.id("inputEmail4")).sendKeys("vignesh@test.com");
+        driver.findElement(By.id("inputPassword4")).sendKeys("Test@123");
+        driver.findElement(By.id("company")).sendKeys("LambdaTest");
+        driver.findElement(By.id("websitename")).sendKeys("https://example.com");
+
+        new Select(driver.findElement(By.name("country")))
+                .selectByVisibleText("United States");
+
+        driver.findElement(By.id("inputCity")).sendKeys("New York");
+        driver.findElement(By.id("inputAddress1")).sendKeys("Street 1");
+        driver.findElement(By.id("inputAddress2")).sendKeys("Street 2");
+        driver.findElement(By.id("inputState")).sendKeys("NY");
+        driver.findElement(By.id("inputZip")).sendKeys("10001");
+    }
+
+    public void clickSubmit() {
+        driver.findElement(submitBtn).click();
+    }
+
+    public String getSuccessMessage() {
+        return driver.findElement(successMsg).getText();
+    }
+}

@@ -1,0 +1,29 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class SimpleFormPage {
+
+    WebDriver driver;
+
+    By messageInput = By.id("user-message");
+    By getCheckedValueBtn = By.id("showInput");
+    By messageText = By.id("message");
+
+    public SimpleFormPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void enterMessage(String message) {
+        driver.findElement(messageInput).sendKeys(message);
+    }
+
+    public void clickGetCheckedValue() {
+        driver.findElement(getCheckedValueBtn).click();
+    }
+
+    public String getMessage() {
+        return driver.findElement(messageText).getText();
+    }
+}

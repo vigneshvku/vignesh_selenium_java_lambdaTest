@@ -1,0 +1,30 @@
+package pages;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+
+public class DragDropSliderPage {
+
+    WebDriver driver;
+
+    By slider = By.xpath("//input[@value='15']");
+    By output = By.id("rangeSuccess");
+
+    public DragDropSliderPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void moveSliderTo95() {
+        Actions actions = new Actions(driver);
+        WebElement sliderElement = driver.findElement(slider);
+        WebElement outputElement = driver.findElement(output);
+
+        while (!outputElement.getText().equals("95")) {
+            actions.dragAndDropBy(sliderElement, 5, 0).perform();
+        }
+    }
+
+    public String getSliderValue() {
+        return driver.findElement(output).getText();
+    }
+}

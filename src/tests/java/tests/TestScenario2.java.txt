@@ -1,0 +1,21 @@
+package tests;
+
+import base.BaseTest;
+import pages.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class TestScenario2 extends BaseTest {
+
+    @Test
+    public void verifyDragAndDropSlider() {
+
+        HomePage home = new HomePage(driver);
+        home.clickDragDropSliders();
+
+        DragDropSliderPage sliderPage = new DragDropSliderPage(driver);
+        sliderPage.moveSliderTo95();
+
+        Assert.assertEquals(sliderPage.getSliderValue(), "95");
+    }
+}

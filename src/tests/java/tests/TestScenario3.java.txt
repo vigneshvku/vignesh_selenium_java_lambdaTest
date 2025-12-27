@@ -1,0 +1,33 @@
+package tests;
+
+import base.BaseTest;
+import pages.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class TestScenario3 extends BaseTest {
+
+    @Test
+    public void verifyInputFormSubmit() {
+
+        HomePage home = new HomePage(driver);
+        home.clickInputFormSubmit();
+
+        InputFormPage formPage = new InputFormPage(driver);
+
+        formPage.clickSubmitWithoutData();
+
+        Assert.assertEquals(
+                formPage.getNameFieldValidationMessage(),
+                "Please fill out this field."
+        );
+
+        formPage.fillAllFields();
+        formPage.clickSubmit();
+
+        Assert.assertTrue(
+                formPage.getSuccessMessage()
+                        .contains("Thanks for contacting us, we will get back to you shortly.")
+        );
+    }
+}

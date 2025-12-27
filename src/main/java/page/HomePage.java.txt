@@ -1,0 +1,29 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class HomePage {
+
+    WebDriver driver;
+
+    By simpleFormDemo = By.linkText("Simple Form Demo");
+    By dragDropSliders = By.linkText("Drag & Drop Sliders");
+    By inputFormSubmit = By.linkText("Input Form Submit");
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void clickSimpleFormDemo() {
+        driver.findElement(simpleFormDemo).click();
+    }
+
+    public void clickDragDropSliders() {
+        driver.findElement(dragDropSliders).click();
+    }
+
+    public void clickInputFormSubmit() {
+        driver.findElement(inputFormSubmit).click();
+    }
+}
